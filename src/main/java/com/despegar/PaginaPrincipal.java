@@ -3,6 +3,7 @@ package com.despegar.pages;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 
 public class PaginaPrincipal extends PageObject {
@@ -15,18 +16,27 @@ public class PaginaPrincipal extends PageObject {
         getDriver().findElement(By.xpath(Permiso)).click();
         String categoria = "(//div[@class='button-circle-icon'])[3]";
         getDriver().findElement(By.xpath(categoria)).click();
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("window.scrollBy(0,300)","");
         String destino = "//input[@placeholder='Ingresa hacia dónde viajas']";
         getDriver().findElement(By.xpath(destino)).click();
-        String ciudad = "//div[contains(text(), 'Santa Marta, Magdalena, Colombia')]";
-        getDriver().findElement(By.xpath(ciudad)).click();
-        String fechaIda = "//input[@placeholder='Ida']";
-        getDriver().findElement(By.xpath(fechaIda)).click();
+        getDriver().findElement(By.xpath(destino)).sendKeys("Santa Marta");
+        String noOfert = "//p[@class='eva-3-link tooltip-web-push--not-now']";
+        getDriver().findElement(By.xpath(noOfert)).click();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace(System.out);
         }
-        Scroll.to(getDriver().findElement(By.xpath(fechaIda)));
+        getDriver().findElement(By.xpath(destino)).sendKeys("Santa Marta, Magdalena, Colombia");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace(System.out);
+        }
+        js.executeScript("window.scrollBy(0,300)","");
+        String fechaIda = "//input[@placeholder='Ida']";
+        getDriver().findElement(By.xpath(fechaIda)).click();
         String ElegirIda = "(//div[@class='sbox5-monthgrid-datenumber-number'])[2]";
         getDriver().findElement(By.xpath(ElegirIda)).click();
         String ElegirVuelta = "(//div[@class='sbox5-monthgrid-datenumber-number'])[12]";
