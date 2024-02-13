@@ -12,4 +12,4 @@ Característica: Realizar una compra exitosa en la pagina despegar.com de paquet
     Y confirmo alojamiento
     Y confirmo vuelos
 
-    Entonces puede visualizar el producto dentro del carrito de compras
+    Entonces puede visualizar la confirmacion de la compra
